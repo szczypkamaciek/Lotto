@@ -4,20 +4,26 @@
     <meta charset='utf-8'>
     <title></title>
       <link rel="stylesheet" href="css.css">
+      <link href="https://fonts.googleapis.com/css?family=Patrick+Hand" rel="stylesheet">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+     
   </head>
   <body>
+ 
     <div1>
       <p> Sprawdź swoją liczbę w Lotto! </p>
     </div1>
     <form>
-      <div2>
+      
         <label for="liczby">Wpisz tutaj swoje liczby: </label>
-        <input type="string" name="liczby" id="liczby" value="" /> <tr>
+        <input type="string" name="liczby" id="liczby"/> 
+       
+        <p id="podpowiedz"> <img src="question%20.png"><span id="podpowiedz-tresc">Liczby powinny być zapisane po przecinkach i bez spacji.</span></p>
         <input type="button" id="przycisk" value="Sprawdź!">
-      </div2>
+     
     </form>
     <div3>
-      <p id="komunikat"></p>
+      <p id="komunikat"> Powodzenia !!!</p>
     </div3>
     <script src="script.js"></script>
   </body>
