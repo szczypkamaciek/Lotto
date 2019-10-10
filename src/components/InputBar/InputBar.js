@@ -3,7 +3,7 @@ import styles from './InputBar.module.scss';
 
 const InputBar = () => (
     <div className={styles.wrapper}>
-        maciek
+        Work in progres
     </div>
 );
 
