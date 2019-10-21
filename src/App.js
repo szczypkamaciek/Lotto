@@ -1,41 +1,64 @@
 import React from 'react';
 import styles from './App.module.scss';
-import InputBar from "./components/InputBar/InputBar";
+import AppWrapper from "./components/AppWrapper/AppWrapper";
 
 
 class App extends React.Component {
     state = {
-        isLoading: true,
         data: {},
-        error: null
+        userData: [1,2,3,4,5,6],
+        hits: [],
+        error: null,
+        loading: false
     };
 
-    data = {};
-
-    fetchUsers() {
+   componentDidMount() {
         fetch(`https://jsonp.afeld.me/?callback=&url=http%3A%2F%2Fserwis.mobilotto.pl%2Fmapi_v6%2Findex.php%3Fjson%3DgetGames%26fbclid%3DIwAR2nAx0aMaXt5sNPEUa2xV9pKcWG6X_f4beUEMG6CPRdYoBBmnlxL8K11mQ`)
-            .then(response => response.json())
-            .then(data => {
-                    this.data = data;
-                    this.setState({
-                        data: data,
-                        isLoading: false,
-                    })
-                }
-            )
-            .catch(error => this.setState({ error, isLoading: false }));
-    }
+           .then(res => {
+               if (res.ok) {
+                   return res.json()
+               } else {
+                   return Promise.reject(res)
+               }
+           })
+           .then(res => this.setState({
+               data: res,
+               loading: true
+           }))
+           .catch(() => this.setState({ error: true }));
+    };
 
-    componentDidMount() {
-        this.fetchUsers();
+    compare = (a, b) => { //a - tablica podana przez uzytkownika, b- tablica z wynikami wygranych
+        for (let i = 0; i < a.length; i++) {
+            if (b.includes(a[i])) {
+                this.setState({
+                    hits: this.concat(a[i])
+                });
+            }
+        }
+    };
+
+    handleButton = () => {
+      console.log("handleButton działa");
     };
 
     render() {
-        const {Lotto} = this.state.data;
-        console.log(Lotto);
+        if (this.state.loading) {
+            console.log(this.state)
+        }
         return (
             <div className={styles.wrapper}>
-                <InputBar/>
+                <div className="first-section">
+                    <p> Sprawdź swoją liczbę w Lotto! </p>
+                </div>
+                <AppWrapper data={this.state.data.Lotto} handleButtonFn={this.handleButton} userData={this.state.userData}/>
+
+                <div className="third-section">
+                    <p id="komunikat"> Powodzenia !!!</p>
+                </div>
+                <div id="informacje" className="third-section">
+
+                </div>
             </div>
         );
     }
