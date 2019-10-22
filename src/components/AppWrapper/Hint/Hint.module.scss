@@ -1,0 +1,22 @@
+.hint {
+  display: inline-block;
+  position: relative;
+  height: 15px;
+  width: 15px;
+  background: gray;
+  span {
+    background: #2D3FFF;
+    color: #fff;
+    font-size: 15px;
+    width: 175px;
+    border-radius: 15px;
+    padding: 5px;
+    display:none;
+  }
+  &:hover {
+    span {
+      display: block;
+      position: fixed;
+    }
+  }
+}

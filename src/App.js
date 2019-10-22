@@ -6,10 +6,9 @@ import AppWrapper from "./components/AppWrapper/AppWrapper";
 class App extends React.Component {
     state = {
         data: {},
-        userData: [1,2,3,4,5,6],
-        hits: [],
         error: null,
-        loading: false
+        loading: false,
+        inputs: 3
     };
 
    componentDidMount() {
@@ -38,29 +37,33 @@ class App extends React.Component {
         }
     };
 
-    handleButton = () => {
-      console.log("handleButton działa");
-    };
-
     render() {
+
         if (this.state.loading) {
-            console.log(this.state)
+
+            return (
+                <div className={styles.wrapper}>
+                    <div className="first-section">
+                        <p> Sprawdź swoją liczbę w Lotto! </p>
+                    </div>
+                    <AppWrapper data={this.state.data}/>
+
+
+                    <div className="third-section">
+                        <p id="komunikat"> Powodzenia !!!</p>
+                    </div>
+                    <div id="informacje" className="third-section">
+
+                    </div>
+                </div>
+            );
+        } else {
+            return (
+                <div className={styles.wrapper}>
+                    Pobieranie aktualnych wyników Lotto.
+                </div>
+            );
         }
-        return (
-            <div className={styles.wrapper}>
-                <div className="first-section">
-                    <p> Sprawdź swoją liczbę w Lotto! </p>
-                </div>
-                <AppWrapper data={this.state.data.Lotto} handleButtonFn={this.handleButton} userData={this.state.userData}/>
-
-                <div className="third-section">
-                    <p id="komunikat"> Powodzenia !!!</p>
-                </div>
-                <div id="informacje" className="third-section">
-
-                </div>
-            </div>
-        );
     }
 }
 

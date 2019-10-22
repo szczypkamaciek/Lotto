@@ -1,17 +1,74 @@
 import React from 'react';
 import styles from './AppWrapper.module.scss';
+import Button from './Button/Button';
+import Hint from "./Hint/Hint";
+import Input from "./Input/Input";
 
-let numbers = React.createRef();
 
-const AppWrapper = ({handleButtonFn}) => (
-    <div className={styles.wrapper}>
-        <label htmlFor="liczby">Wpisz tutaj swoje liczby: </label>
-        <input type="string" name="liczby" ref={numbers}/>
+class AppWrapper extends React.Component {
+    state = {
+        fetchedData: this.props.data.Lotto.numerki.split(","),
+        inputNumber: 1
+    };
+    compare = (a) => {
+        let array = a.split(",");
+        let hits = [];
+        for (let i = 0; i < array.length; i++) {
+            if (this.state.fetchedData.includes(array[i])) {
+                hits.push(array[i]);
+            }
+        }
+        console.log(array, hits);
+    };
 
-        <p className={styles.hint}><span className={styles.hintQuestionMark}>?</span><span className={styles.hintText}>Liczby powinny być zapisane po przecinkach i bez spacji.</span></p>
-        <input className={styles.button} type="button" id="button" value="Sprawdź!" onClick={handleButtonFn}/>
-    </div>
-);
+    handleButton = (e) => {
+        e.preventDefault();
+        for (let i = 0; i < this.state.inputNumber; i++) {
+            console.log(e.target[i].value);
+            console.log(this.state.fetchedData);
+            this.compare(e.target[i].value);
+        }
+    };
+
+    addInput = (e) => {
+        e.preventDefault();
+        let counter = ++this.state.inputNumber;
+        this.setState({
+            inputNumber: counter
+        })
+    };
+    removeInput = (e) => {
+        e.preventDefault();
+        let counter = --this.state.inputNumber;
+        this.setState({
+            inputNumber: counter
+        })
+    };
+
+    render() {
+        let inputs = [];
+        for (let i = 0; i < this.state.inputNumber; i++) {
+            inputs.push(<Input number={i} fetchedData={this.state.fetchedData} key={i}/>)
+        }
+        return (
+            <form onSubmit={this.handleButton} className={styles.wrapper}>
+                <label htmlFor="liczby">Wpisz tutaj swoje liczby: </label>
+
+                <div className={styles.inputWrapper}>
+                    {inputs}
+                </div>
+
+                <Hint />
+                <div className={styles.btnWrapper}>
+                    <Button buttonFn={this.addInput}>+</Button>
+                    <Button buttonFn={this.removeInput}>-</Button>
+                    <Button type="submit">Sprawdź!</Button>
+                </div>
+
+            </form>
+        );
+    }
+}
 
 
 export default AppWrapper;
