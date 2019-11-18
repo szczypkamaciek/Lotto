@@ -7,6 +7,7 @@ const Input = ({number}) => (
             className={styles.input}
             maxLength="17"
             name={"Input"+number}
+            pattern="([1-9]|[1-4][0-9],){5}([1-9]|[1-4][0-9])"
         />
         <label className={styles.label} htmlFor={"Input"+number}>
             Zestaw {number+1}:

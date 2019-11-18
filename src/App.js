@@ -27,20 +27,8 @@ class App extends React.Component {
            .catch(() => this.setState({ error: true }));
     };
 
-    compare = (a, b) => { //a - tablica podana przez uzytkownika, b- tablica z wynikami wygranych
-        for (let i = 0; i < a.length; i++) {
-            if (b.includes(a[i])) {
-                this.setState({
-                    hits: this.concat(a[i])
-                });
-            }
-        }
-    };
-
     render() {
-
         if (this.state.loading) {
-
             return (
                 <div className={styles.wrapper}>
                     <div className="first-section">

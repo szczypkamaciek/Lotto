@@ -5,4 +5,12 @@
 body {
     margin: 0;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #0D96D4;
+    min-height: 100vh;
+    font-family: 'Lato', sans-serif;
+
 }
