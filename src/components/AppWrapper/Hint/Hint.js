@@ -2,10 +2,17 @@ import React from 'react';
 import styles from './Hint.module.scss';
 
 
-const Hint = () => (
+const Hint = ({lang}) => (
     <p className={styles.hint}>
-        <span className={styles.hintQuestionMark}>?</span>
-        <span className={styles.hintText}>Liczby powinny być zapisane po przecinkach i bez spacji.</span>
+        <span>
+            {
+                lang === "pl"
+                    ?
+                    "Liczby powinny być zapisane po przecinkach i bez spacji."
+                    :
+                    "The numbers should be written after commas and without spaces."
+            }
+        </span>
     </p>
 );
 

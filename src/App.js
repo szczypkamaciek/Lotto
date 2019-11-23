@@ -31,18 +31,7 @@ class App extends React.Component {
         if (this.state.loading) {
             return (
                 <div className={styles.wrapper}>
-                    <div className="first-section">
-                        <p> Sprawdź swoją liczbę w Lotto! </p>
-                    </div>
                     <AppWrapper data={this.state.data}/>
-
-
-                    <div className="third-section">
-                        <p id="komunikat"> Powodzenia !!!</p>
-                    </div>
-                    <div id="informacje" className="third-section">
-
-                    </div>
                 </div>
             );
         } else {

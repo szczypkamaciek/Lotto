@@ -1,11 +1,12 @@
 .hint {
   display: inline-block;
   position: relative;
-  height: 15px;
-  width: 15px;
-  background: gray;
+  height: 25px;
+  width: 25px;
+  background: url('./question.png') center no-repeat;
+  background-size: contain;
   span {
-    background: #2D3FFF;
+    background: #222E50;
     color: #fff;
     font-size: 15px;
     width: 175px;
